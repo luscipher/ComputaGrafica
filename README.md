@@ -52,3 +52,7 @@ O cubo e a esfera também são animados para se moverem circularmente ao redor d
 ## Renderização:
 
 A função renderer.render(scene, camera); renderiza a cena com a câmera atual e a exibe no elemento de renderização.
+
+# Resultado
+
+![image](https://github.com/luscipher/ComputaGrafica/assets/122156760/26c47ff1-2890-4f6e-b66e-d2c937355470)
