@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pirâmides e Cubo em Three.js</title>
+    <style>
+        body { margin: 0; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script>
+        // Criação da cena
+        const scene = new THREE.Scene();
+
+        // Criação da câmera
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        // Criação do renderizador
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Criação da geometria da pirâmide (diminuída)
+        const pyramidGeometry = new THREE.ConeGeometry(1, 2, 4); // Diminui o tamanho
+
+        // Carregamento da textura para a pirâmide
+        const textureLoader = new THREE.TextureLoader();
+        const pyramidTexture = textureLoader.load('textura/textura.jpeg'); // Substitua pelo URL da textura da pirâmide
+
+        // Material da pirâmide com textura
+        const pyramidMaterial = new THREE.MeshBasicMaterial({ map: pyramidTexture });
+
+        const pyramid = new THREE.Mesh(pyramidGeometry, pyramidMaterial);
+        scene.add(pyramid);
+
+        // Criação do cubo
+        const cubeGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+
+        // Carregamento das texturas para a esfera e o cubo
+        const sphereTexture = textureLoader.load('textura/bi.png'); // Substitua pelo URL da textura da esfera
+        const cubeTexture = textureLoader.load('textura/lesb.png'); // Substitua pelo URL da textura do cubo
+
+        // Material da esfera com textura
+        const sphereMaterial = new THREE.MeshBasicMaterial({ map: sphereTexture });
+
+        // Material do cubo com textura
+        const cubeMaterial = new THREE.MeshBasicMaterial({ map: cubeTexture });
+
+        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(2, 0, 2); // Posição inicial do cubo
+        scene.add(cube);
+
+        // Criação da esfera azul
+        const sphereGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphere.position.set(-2, 0, -2); // Posição inicial da esfera
+        scene.add(sphere);
+
+        // Configuração da posição da câmera
+        camera.position.z = 10;
+
+        // Função de animação para girar todas as formas
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            pyramid.rotation.x += 0.01;
+            pyramid.rotation.y += 0.01;
+
+            // Girar o cubo ao redor da pirâmide central
+            cube.position.x = 2 * Math.cos(Date.now() * 0.001);
+            cube.position.z = 2 * Math.sin(Date.now() * 0.001);
+
+            // Girar a esfera ao redor da pirâmide central
+            sphere.position.x = -2 * Math.cos(Date.now() * 0.001);
+            sphere.position.z = -2 * Math.sin(Date.now() * 0.001);
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
+</body>
+</html>
