@@ -1,19 +1,6 @@
 # Snake Game README
 This is a simple Snake Game implemented in JavaScript using the HTML5 Canvas element. In this game, you control a snake that moves around the canvas and tries to eat food to grow in size. The game ends if the snake collides with the canvas boundaries or itself.
 
-## Instructions
-Clone or download the repository to your local machine.
-
-Open the index.html file in a modern web browser that supports HTML5 Canvas.
-
-Use the arrow keys (left, right, up, down) to control the snake's direction.
-
-Eat the red food squares to increase your score.
-
-Avoid colliding with the boundaries of the canvas or the snake's own body.
-
-Click the "Reset" button to start a new game.
-
 ## Code Overview
 Here's an overview of the JavaScript code used to create the Snake Game:
 
